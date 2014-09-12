@@ -108,7 +108,11 @@ namespace StudentRecordReport
                 cs[4, 14].PutValue(student.ParentRecord.CustodianRelationship);
                 cs[4, 17].PutValue(student.AddressRecord.MailingAddress);
                 cs[5, 2].PutValue(student.StudentRecord.Gender);
+                cs[5, 11].PutValue(student.EntranceRecord == null ? string.Empty : student.EntranceRecord.ADDate);
+                cs[5, 15].PutValue(student.Entrance == null ? "西元        年        月        日" : student.Entrance.Value.ToString("西元  yyyy  年   MM   月   dd   日"));
+                cs[5, 22].PutValue(student.Leaving == null ? "西元        年        月        日" : student.Leaving.Value.ToString("西元  yyyy  年   MM   月   dd   日"));
                 cs[6, 2].PutValue(student.StudentRecord.Nationality);
+                cs[6, 11].PutValue(student.EntranceRecord == null ? string.Empty : student.EntranceRecord.ADNumber);
 
                 int startGrade = 1;
                 int endGrade = 6;

@@ -11,7 +11,12 @@ namespace StudentRecordReport
 {
     public class Data
     {
-        public static  Dictionary<string, StudentObj> Get(List<string> studentIDs)
+        private static List<string> 新生異動代碼 = new List<string>() { "001", "002", "003", "004", "005", "006", "007", "008", "009", "010", "099" };
+        private static List<string> 轉入代碼 = new List<string>() { "111", "112", "113", "114", "115", "121", "122", "123", "124" };
+        private static List<string> 轉出代碼 = new List<string>() { "311", "312", "313", "314", "315", "316", "321", "322", "323", "325", "326", "327", "341", "342", "343", "344", "345", "346", "347", "348", "349", "350", "351", "361", "362", "371", "371", "373", "374", "375", "376", "377", "378", "379", "380"};
+        private static List<string> 畢業代碼 = new List<string>() { "501" };
+
+        public static Dictionary<string, StudentObj> Get(List<string> studentIDs)
         {
             try
             {
@@ -22,6 +27,22 @@ namespace StudentRecordReport
                 {
                     if (!StudentDic.ContainsKey(sr.ID))
                         StudentDic.Add(sr.ID, new StudentObj(sr));
+                }
+
+                //學生異動資料
+                foreach (UpdateRecordRecord urr in K12.Data.UpdateRecord.SelectByStudentIDs(studentIDs))
+                {
+                    if (新生異動代碼.Contains(urr.UpdateCode))
+                        StudentDic[urr.StudentID].SetEntrance(urr);
+
+                    if (轉入代碼.Contains(urr.UpdateCode))
+                        StudentDic[urr.StudentID].SetEntrance(urr);
+
+                    if (轉出代碼.Contains(urr.UpdateCode))
+                        StudentDic[urr.StudentID].SetLeaving(urr);
+
+                    if (畢業代碼.Contains(urr.UpdateCode))
+                        StudentDic[urr.StudentID].SetLeaving(urr);
                 }
 
                 //學生地址
@@ -74,6 +95,6 @@ namespace StudentRecordReport
                 return null;
             }
         }
-        
+
     }
 }

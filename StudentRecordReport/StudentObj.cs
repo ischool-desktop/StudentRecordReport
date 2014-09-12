@@ -21,6 +21,9 @@ namespace StudentRecordReport
         public Dictionary<string, AttendanceObj> AttendanceObjDic;
         public List<string> SubjectList6;
         public List<string> SubjectList12;
+        public DateTime? Entrance;
+        public DateTime? Leaving;
+        public UpdateRecordRecord EntranceRecord;
 
         public StudentObj(StudentRecord sr)
         {
@@ -35,6 +38,43 @@ namespace StudentRecordReport
             AttendanceObjDic = new Dictionary<string, AttendanceObj>();
             SubjectList6 = new List<string>();
             SubjectList12 = new List<string>();
+        }
+
+        /// <summary>
+        /// 設定入學時間
+        /// </summary>
+        /// <param name="urr"></param>
+        public void SetEntrance(UpdateRecordRecord urr)
+        {
+            if (Entrance == null)
+                Entrance = new DateTime();
+
+            DateTime dt = new DateTime();
+            if(DateTime.TryParse(urr.UpdateDate,out dt))
+            {
+                if (dt > Entrance)
+                {
+                    Entrance = dt;
+                    EntranceRecord = urr;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 設定離校時間
+        /// </summary>
+        /// <param name="urr"></param>
+        public void SetLeaving(UpdateRecordRecord urr)
+        {
+            if (Leaving == null)
+                Leaving = new DateTime();
+
+            DateTime dt = new DateTime();
+            if (DateTime.TryParse(urr.UpdateDate, out dt))
+            {
+                if (dt > Leaving)
+                    Leaving = dt;
+            }
         }
 
         /// <summary>
