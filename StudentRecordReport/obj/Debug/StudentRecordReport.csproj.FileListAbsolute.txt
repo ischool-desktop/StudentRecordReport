@@ -1,5 +1,6 @@
 D:\GitHub2\StudentRecordReport\StudentRecordReport\bin\Debug\StudentRecordReport.dll
 D:\GitHub2\StudentRecordReport\StudentRecordReport\bin\Debug\StudentRecordReport.pdb
+D:\GitHub2\StudentRecordReport\StudentRecordReport\obj\Debug\StudentRecordReport.csprojResolveAssemblyReference.cache
 D:\GitHub2\StudentRecordReport\StudentRecordReport\obj\Debug\StudentRecordReport.Properties.Resources.resources
 D:\GitHub2\StudentRecordReport\StudentRecordReport\obj\Debug\StudentRecordReport.Reporter.resources
 D:\GitHub2\StudentRecordReport\StudentRecordReport\obj\Debug\StudentRecordReport.csproj.GenerateResource.Cache
