@@ -2,6 +2,7 @@
 using K12.Data;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,15 +12,31 @@ namespace StudentRecordReport
 {
     public class Data
     {
-        private static List<string> 新生異動代碼 = new List<string>() { "001", "002", "003", "004", "005", "006", "007", "008", "009", "010", "099" };
-        private static List<string> 轉入代碼 = new List<string>() { "111", "112", "113", "114", "115", "121", "122", "123", "124" };
-        private static List<string> 轉出代碼 = new List<string>() { "311", "312", "313", "314", "315", "316", "321", "322", "323", "325", "326", "327", "341", "342", "343", "344", "345", "346", "347", "348", "349", "350", "351", "361", "362", "371", "371", "373", "374", "375", "376", "377", "378", "379", "380"};
-        private static List<string> 畢業代碼 = new List<string>() { "501" };
+        //private static List<string> 新生異動代碼 = new List<string>() { "001", "002", "003", "004", "005", "006", "007", "008", "009", "010", "099" };
+        //private static List<string> 轉入代碼 = new List<string>() { "111", "112", "113", "114", "115", "121", "122", "123", "124" };
+        //private static List<string> 轉出代碼 = new List<string>() { "311", "312", "313", "314", "315", "316", "321", "322", "323", "325", "326", "327", "341", "342", "343", "344", "345", "346", "347", "348", "349", "350", "351", "361", "362", "371", "371", "373", "374", "375", "376", "377", "378", "379", "380"};
+        //private static List<string> 畢業代碼 = new List<string>() { "501" };
 
         public static Dictionary<string, StudentObj> Get(List<string> studentIDs)
         {
             try
             {
+                //入學及離校日期對照
+                Dictionary<string, EnLvDateObj> dateDic = new Dictionary<string, EnLvDateObj>();
+                string str_ids = string.Join("','",studentIDs);
+                str_ids = "'" + str_ids + "'";
+                string sql = "select ref_student_id,entrance_date,leaving_date from $jhcore_bilingual.studentrecordext where ref_student_id in (" + str_ids +")";
+
+                DataTable dt = tool._Q.Select(sql);
+                foreach (DataRow row in dt.Rows)
+                {
+                    string id = row["ref_student_id"] + "";
+                    string ed = row["entrance_date"] + "";
+                    string ld = row["leaving_date"] + "";
+
+                    dateDic.Add(id, new EnLvDateObj(ed, ld));
+                }
+
                 Dictionary<string, StudentObj> StudentDic = new Dictionary<string, StudentObj>();
 
                 //學生基本資料
@@ -29,21 +46,31 @@ namespace StudentRecordReport
                         StudentDic.Add(sr.ID, new StudentObj(sr));
                 }
 
-                //學生異動資料
-                foreach (UpdateRecordRecord urr in K12.Data.UpdateRecord.SelectByStudentIDs(studentIDs))
+                //設定入學及離校日期
+                foreach (string id in StudentDic.Keys)
                 {
-                    if (新生異動代碼.Contains(urr.UpdateCode))
-                        StudentDic[urr.StudentID].SetEntrance(urr);
-
-                    if (轉入代碼.Contains(urr.UpdateCode))
-                        StudentDic[urr.StudentID].SetEntrance(urr);
-
-                    if (轉出代碼.Contains(urr.UpdateCode))
-                        StudentDic[urr.StudentID].SetLeaving(urr);
-
-                    if (畢業代碼.Contains(urr.UpdateCode))
-                        StudentDic[urr.StudentID].SetLeaving(urr);
+                    if (dateDic.ContainsKey(id))
+                    {
+                        StudentDic[id].Entrance = dateDic[id].EntranceDate;
+                        StudentDic[id].Leaving = dateDic[id].LeavingDate;
+                    }
                 }
+
+                //學生異動資料
+                //foreach (UpdateRecordRecord urr in K12.Data.UpdateRecord.SelectByStudentIDs(studentIDs))
+                //{
+                //    if (新生異動代碼.Contains(urr.UpdateCode))
+                //        StudentDic[urr.StudentID].SetEntrance(urr);
+
+                //    if (轉入代碼.Contains(urr.UpdateCode))
+                //        StudentDic[urr.StudentID].SetEntrance(urr);
+
+                //    if (轉出代碼.Contains(urr.UpdateCode))
+                //        StudentDic[urr.StudentID].SetLeaving(urr);
+
+                //    if (畢業代碼.Contains(urr.UpdateCode))
+                //        StudentDic[urr.StudentID].SetLeaving(urr);
+                //}
 
                 //學生地址
                 foreach (AddressRecord ar in K12.Data.Address.SelectByStudentIDs(studentIDs))
@@ -96,5 +123,26 @@ namespace StudentRecordReport
             }
         }
 
+    }
+
+    public class EnLvDateObj
+    {
+        public DateTime? EntranceDate;
+        public DateTime? LeavingDate;
+
+        public EnLvDateObj(string ed,string ld)
+        {
+            DateTime dt;
+
+            if(DateTime.TryParse(ed,out dt))
+            {
+                EntranceDate = dt;
+            }
+
+            if (DateTime.TryParse(ld, out dt))
+            {
+                LeavingDate = dt;
+            }
+        }
     }
 }

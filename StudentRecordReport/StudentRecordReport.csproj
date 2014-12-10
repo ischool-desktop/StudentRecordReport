@@ -42,6 +42,10 @@
       <HintPath>library\FISCA.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="FISCA.Data">
+      <HintPath>library\FISCA.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="FISCA.Permission">
       <HintPath>library\FISCA.Permission.dll</HintPath>
       <Private>False</Private>
@@ -104,6 +108,7 @@
     </Compile>
     <Compile Include="StudentObj.cs" />
     <Compile Include="SubjectObj.cs" />
+    <Compile Include="tool.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
