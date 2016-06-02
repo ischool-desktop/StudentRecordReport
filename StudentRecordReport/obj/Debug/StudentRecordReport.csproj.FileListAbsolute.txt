@@ -6,3 +6,13 @@ D:\GitHub2\StudentRecordReport\StudentRecordReport\obj\Debug\StudentRecordReport
 D:\GitHub2\StudentRecordReport\StudentRecordReport\obj\Debug\StudentRecordReport.csproj.GenerateResource.Cache
 D:\GitHub2\StudentRecordReport\StudentRecordReport\obj\Debug\StudentRecordReport.dll
 D:\GitHub2\StudentRecordReport\StudentRecordReport\obj\Debug\StudentRecordReport.pdb
+C:\Users\ED\Documents\ischool_git\studentrecordreport\StudentRecordReport\bin\Debug\StudentRecordReport.dll
+C:\Users\ED\Documents\ischool_git\studentrecordreport\StudentRecordReport\bin\Debug\StudentRecordReport.pdb
+C:\Users\ED\Documents\ischool_git\studentrecordreport\StudentRecordReport\obj\Debug\StudentRecordReport.csprojResolveAssemblyReference.cache
+C:\Users\ED\Documents\ischool_git\studentrecordreport\StudentRecordReport\obj\Debug\StudentRecordReport.Properties.Resources.resources
+C:\Users\ED\Documents\ischool_git\studentrecordreport\StudentRecordReport\obj\Debug\StudentRecordReport.Reporter.resources
+C:\Users\ED\Documents\ischool_git\studentrecordreport\StudentRecordReport\obj\Debug\StudentRecordReport.csproj.GenerateResource.Cache
+C:\Users\ED\Documents\ischool_git\studentrecordreport\StudentRecordReport\obj\Debug\StudentRecordReport.dll
+C:\Users\ED\Documents\ischool_git\studentrecordreport\StudentRecordReport\obj\Debug\StudentRecordReport.pdb
+C:\Users\ED\Desktop\ischool\實驗高中(雙語部)\addmodules\學籍表\StudentRecordReport.dll
+C:\Users\ED\Desktop\ischool\實驗高中(雙語部)\addmodules\學籍表\StudentRecordReport.pdb

@@ -90,29 +90,31 @@ namespace StudentRecordReport
                 //列印差異標題
                 if (_IsLowGrade)
                 {
-                    cs[0, 16].PutValue("學生學籍記錄表(一~六年級)");
-                    cs[3, 13].PutValue("Bilingual Department Transcript of Records(Grade 1~6)");
+                    cs[0, 12].PutValue("學生學籍記錄表(一~六年級)");
+                    cs[3, 2].PutValue("Bilingual Department Transcript of Records(Grade 1~6)");
                 }
                 else
                 {
-                    cs[0, 16].PutValue("學生學籍記錄表(七~十二年級)");
-                    cs[3, 13].PutValue("Bilingual Department Transcript of Records(Grade 7~12)");
+                    cs[0, 12].PutValue("學生學籍記錄表(七~十二年級)");
+                    cs[3, 2].PutValue("Bilingual Department Transcript of Records(Grade 7~12)");
                 }
 
                 //列印學生基本資料
-                cs[0, 2].PutValue(student.StudentRecord.StudentNumber);
-                cs[2, 2].PutValue(student.StudentRecord.Name);
-                cs[2, 5].PutValue(student.StudentRecord.EnglishName);
-                cs[4, 2].PutValue(student.StudentRecord.Birthday.HasValue ? student.StudentRecord.Birthday.Value.ToShortDateString() : "");
-                cs[4, 9].PutValue(student.ParentRecord.CustodianName);
-                cs[4, 14].PutValue(student.ParentRecord.CustodianRelationship);
-                cs[4, 17].PutValue(student.AddressRecord.MailingAddress);
-                cs[5, 2].PutValue(student.StudentRecord.Gender);
-                cs[5, 11].PutValue(student.EntranceRecord == null ? string.Empty : student.EntranceRecord.ADDate);
-                cs[5, 15].PutValue(student.Entrance == null ? "西元        年        月        日" : student.Entrance.Value.ToString("西元  yyyy  年   MM   月   dd   日"));
-                cs[5, 22].PutValue(student.Leaving == null ? "西元        年        月        日" : student.Leaving.Value.ToString("西元  yyyy  年   MM   月   dd   日"));
-                cs[6, 2].PutValue(student.StudentRecord.Nationality);
-                cs[6, 11].PutValue(student.EntranceRecord == null ? string.Empty : student.EntranceRecord.ADNumber);
+                // 2016/5/2 穎驊筆記，因應實驗高中方要增加成績欄位，因此將表格從原本橫式B4，變成直式B4，因此以下全部填寫欄位位子有所更動。
+
+                cs[4, 2].PutValue(student.StudentRecord.StudentNumber);
+                cs[4, 8].PutValue(student.StudentRecord.Name);
+                cs[4, 13].PutValue(student.StudentRecord.EnglishName);
+                cs[7, 2].PutValue(student.StudentRecord.Birthday.HasValue ? student.StudentRecord.Birthday.Value.ToShortDateString() : "");
+                cs[7, 9].PutValue(student.ParentRecord.CustodianName);
+                cs[7, 14].PutValue(student.ParentRecord.CustodianRelationship);
+                cs[7, 17].PutValue(student.AddressRecord.MailingAddress);
+                cs[8, 2].PutValue(student.StudentRecord.Gender);
+                cs[8, 11].PutValue(student.EntranceRecord == null ? string.Empty : student.EntranceRecord.ADDate);
+                cs[8, 15].PutValue(student.Entrance == null ? "西元        年        月        日" : student.Entrance.Value.ToString("西元  yyyy  年   MM   月   dd   日"));
+                cs[8, 22].PutValue(student.Leaving == null ? "西元        年        月        日" : student.Leaving.Value.ToString("西元  yyyy  年   MM   月   dd   日"));
+                cs[9, 2].PutValue(student.StudentRecord.Nationality);
+                cs[9, 11].PutValue(student.EntranceRecord == null ? string.Empty : student.EntranceRecord.ADNumber);
 
                 int startGrade = 1;
                 int endGrade = 6;
@@ -128,11 +130,11 @@ namespace StudentRecordReport
                 {
                     int schoolYear = student.GradeToSchoolYear[i];
                     //學年度標題
-                    cs[8, columnIndex].PutValue(string.Format("{0}年級({1}學年度)", i, schoolYear == 0 ? "  " : schoolYear + ""));
-                    cs[9, columnIndex].PutValue(string.Format("Gr.{0}Sch.  Yr.{1}-{2}", i, schoolYear == 0 ? "20__" : schoolYear + 1911 + "", schoolYear == 0 ? "20__" : schoolYear + 1912 + ""));
+                    cs[11, columnIndex].PutValue(string.Format("{0}年級({1}學年度)", i, schoolYear == 0 ? "  " : schoolYear + ""));
+                    cs[12, columnIndex].PutValue(string.Format("Gr.{0}Sch.  Yr.{1}-{2}", i, schoolYear == 0 ? "20__" : schoolYear + 1911 + "", schoolYear == 0 ? "20__" : schoolYear + 1912 + ""));
 
                     //科目成績
-                    int rowIndex = 11;
+                    int rowIndex = 14;
                     List<string> subjectList = i <= 6 ? student.SubjectList6 : student.SubjectList12;
                     foreach (string subj in subjectList)
                     {
@@ -151,13 +153,13 @@ namespace StudentRecordReport
                     string syKey = schoolYear + "";
                     if (student.AvgObjDic.ContainsKey(syKey))
                     {
-                        cs[26, columnIndex + 1].PutValue(student.AvgObjDic[syKey].MidtermAvg + "");
-                        cs[26, columnIndex + 2].PutValue(student.AvgObjDic[syKey].FinalAvg + "");
-                        cs[26, columnIndex + 3].PutValue(student.AvgObjDic[syKey].GetAvg() + "");
+                        cs[59, columnIndex + 1].PutValue(student.AvgObjDic[syKey].MidtermAvg + "");
+                        cs[59, columnIndex + 2].PutValue(student.AvgObjDic[syKey].FinalAvg + "");
+                        cs[59, columnIndex + 3].PutValue(student.AvgObjDic[syKey].GetAvg() + "");
                     }
 
                     //出缺勤
-                    rowIndex = 27;
+                    rowIndex = 60;
                     string key1 = schoolYear + "_1";
                     if (student.AttendanceObjDic.ContainsKey(key1))
                     {
