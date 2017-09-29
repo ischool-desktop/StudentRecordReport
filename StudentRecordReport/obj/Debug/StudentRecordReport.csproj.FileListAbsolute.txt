@@ -16,3 +16,11 @@ C:\Users\ED\Documents\ischool_git\studentrecordreport\StudentRecordReport\obj\De
 C:\Users\ED\Documents\ischool_git\studentrecordreport\StudentRecordReport\obj\Debug\StudentRecordReport.pdb
 C:\Users\ED\Desktop\ischool\實驗高中(雙語部)\addmodules\學籍表\StudentRecordReport.dll
 C:\Users\ED\Desktop\ischool\實驗高中(雙語部)\addmodules\學籍表\StudentRecordReport.pdb
+D:\Users\小金\Desktop\ischool\實驗高中(雙語部)\addmodules\學籍表\StudentRecordReport.dll
+D:\Users\小金\Desktop\ischool\實驗高中(雙語部)\addmodules\學籍表\StudentRecordReport.pdb
+D:\Users\小金\Documents\github_ischool\StudentRecordReport\StudentRecordReport\obj\Debug\StudentRecordReport.Properties.Resources.resources
+D:\Users\小金\Documents\github_ischool\StudentRecordReport\StudentRecordReport\obj\Debug\StudentRecordReport.Reporter.resources
+D:\Users\小金\Documents\github_ischool\StudentRecordReport\StudentRecordReport\obj\Debug\StudentRecordReport.csproj.GenerateResource.Cache
+D:\Users\小金\Documents\github_ischool\StudentRecordReport\StudentRecordReport\obj\Debug\StudentRecordReport.csproj.CoreCompileInputs.cache
+D:\Users\小金\Documents\github_ischool\StudentRecordReport\StudentRecordReport\obj\Debug\StudentRecordReport.dll
+D:\Users\小金\Documents\github_ischool\StudentRecordReport\StudentRecordReport\obj\Debug\StudentRecordReport.pdb

@@ -83,7 +83,19 @@ namespace StudentRecordReport
                 StudentObj student = StudentDic[id];
 
                 wb.Worksheets.AddCopy(0);
-                wb.Worksheets[wb.Worksheets.Count - 1].Name = student.StudentRecord.Name + id;
+                //2017/9/29，羿均，因應worksheet名稱不能超過30個字元。如果學生姓名 + ID超過 30 個字元，扣除ID字元長度，剩下的字元長度來顯示學生姓名。
+                string name = "";
+                if (student.StudentRecord.Name.Length + id.Length > 30)
+                {
+                    for (int i = 0; i < 30 - id.Length; i++)
+                    {
+                        name += student.StudentRecord.Name[i];
+                    }
+                }
+                else
+                    name = student.StudentRecord.Name;
+
+                wb.Worksheets[wb.Worksheets.Count - 1].Name = name + id;
 
                 Cells cs = wb.Worksheets[wb.Worksheets.Count - 1].Cells;
 
